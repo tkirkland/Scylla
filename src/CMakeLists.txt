@@ -92,9 +92,22 @@ add_library(Scylla MODULE
 )
 target_link_libraries(Scylla PRIVATE ScyllaLib)
 
+if(MSVC)
+  target_link_directories(Scylla PRIVATE
+    "$ENV{VCToolsInstallDir}atlmfc/lib/spectre/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>"
+  )
+endif()
+
 # Standalone executable
 add_executable(ScyllaExe WIN32
     ${SCYLLA_RSRC_FILES}
     "main.cpp"
 )
 target_link_libraries(ScyllaExe PRIVATE ScyllaLib)
+
+if(MSVC)
+  target_link_directories(ScyllaExe PRIVATE
+    "$ENV{VCToolsInstallDir}atlmfc/lib/spectre/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>"
+  )
+endif()
+
