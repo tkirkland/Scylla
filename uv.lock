@@ -1,0 +1,11 @@
+version = 1
+revision = 5
+requires-python = ">=3.11"
+
+[[package]]
+name = "pyscylla"
+version = "0.12.0"
+source = { editable = "." }
+
+[package.metadata]
+provides-extras = ["test"]
