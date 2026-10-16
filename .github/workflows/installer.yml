@@ -16,6 +16,8 @@ jobs:
   build:
     name: Build x64 installer
     runs-on: windows-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
 
     steps:
       - uses: actions/checkout@v7
@@ -64,7 +66,8 @@ jobs:
     name: Publish release
     needs: build
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v')
+    # Every push to main publishes a build release; pushing a v* tag publishes that tag.
+    if: github.event_name == 'push'
     permissions:
       contents: write
 
@@ -77,4 +80,16 @@ jobs:
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" dist/*.exe --repo "$GITHUB_REPOSITORY" --title "Scylla $GITHUB_REF_NAME" --generate-notes
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            tag="$GITHUB_REF_NAME"
+          else
+            tag="v${VERSION}-build.${GITHUB_RUN_NUMBER}"
+          fi
+          gh release create "$tag" dist/*.exe \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Scylla $tag" \
+            --generate-notes \
+            --latest
