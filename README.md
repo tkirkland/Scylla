@@ -5,6 +5,11 @@ This repository contains a fork of [NtQuery/Scylla](https://github.com/NtQuery/S
 with tweaks from [x64dbg/Scylla](https://github.com/x64dbg/Scylla) as well as
 additional fixes, refactoring and bindings.
 
+This fork of [ergrelet/Scylla](https://github.com/ergrelet/Scylla) exists to ship
+ready-to-install Windows x64 builds: every push to `main` builds Scylla and
+publishes an Inno Setup installer on the [Releases](https://github.com/tkirkland/Scylla/releases)
+page. Upstream patches are merged in periodically.
+
 Scylla's key features:
  - x64 and x86 support
  - Unicode support
