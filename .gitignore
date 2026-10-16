@@ -1,30 +1,41 @@
-# generic files/directories to ignore
+# Visual Studio
+.vs/
+ipch/
 Win32/
 x64/
-ipch/
+*.aps
 *.opensdf
 *.sdf
-*.aps
 *.suo
-Scylla.vcxproj.user
+*.user
+*.VC.db
+*.VC.opendb
+
+# Build output
+build/
+out/
+cmake-build-*/
 Scylla_v*/
 
-# tinyxml ignore + exceptions
-tinyxml/*
-!tinyxml/README
-!tinyxml/tinyxml.vcxproj*
-
-# WTL ignore + exceptions
-WTL/*
-!WTL/README
-.vs/
-
 # Python bindings
-build/
 dist/
 _build/
 _generate/
-*.so
+*.egg-info/
+__pycache__/
 *.py[cod]
-*.egg-info
-*env*
+*.so
+*.pyd
+.pytest_cache/
+
+# Python environments
+.venv/
+venv/
+.env
+
+# Editor / tool caches
+.cache/
+.idea/
+.vscode/
+.remember/
+graphify-out/
