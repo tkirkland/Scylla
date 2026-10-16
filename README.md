@@ -1,5 +1,5 @@
-Scylla - x64/x86 Imports Reconstruction
-=======================================
+Scylla - x64 Imports Reconstruction
+===================================
 
 This repository contains a fork of [NtQuery/Scylla](https://github.com/NtQuery/Scylla)
 with tweaks from [x64dbg/Scylla](https://github.com/x64dbg/Scylla) as well as
@@ -11,7 +11,7 @@ publishes an Inno Setup installer on the [Releases](https://github.com/tkirkland
 page. Upstream patches are merged in periodically.
 
 Scylla's key features:
- - x64 and x86 support
+ - x64 (64-bit) builds only; for 32-bit targets use an upstream x86 build
  - Unicode support
  - Plugin support
  - Works on Windows 7 and superior
